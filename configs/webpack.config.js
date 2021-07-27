@@ -28,20 +28,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [{
-        context: 'public/',
-        from: 'images/',
+        from: 'public/images/',
         to: 'images/',
       }],
     }),
-    // new CopyPlugin({
-    //   patterns: [{
-    //     from: 'public',
-    //     to: 'assets',
-    //     globOptions: {
-    //       ignore: ['**/index.html'],
-    //     },
-    //   }],
-    // }),
   ],
   resolve: {
     modules: ['src', 'node_modules'],
