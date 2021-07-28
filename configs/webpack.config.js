@@ -1,9 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const { webpack } = require("webpack");
 
 module.exports = {
+  target: 'web',
   mode: 'development',
   entry: ['./src/index.js'],
   output: {
@@ -13,12 +16,12 @@ module.exports = {
     filename: 'js/bundle.[contenthash:8].js',
     chunkFilename: 'js/[contenthash:8].chunk.js',
     // 'asset/resource' 模块输出目录
-    assetModuleFilename: 'images/[hash][ext][query]',
+    assetModuleFilename: 'images/[name][ext][query]',
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[contenthash:8].chunk.css',
+      filename: 'css/[name].css',
+      chunkFilename: 'css/chunk.css',
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -76,16 +79,19 @@ module.exports = {
       },
     ],
   },
-  devtool: 'eval-source-map',
-  optimization: { moduleIds: 'named' },
+  // devtool: 'eval-source-map',
+  optimization: {
+    moduleIds: 'named',
+    minimizer: [new TerserPlugin({ extractComments: false })],
+  },
   devServer: {
-    contentBase: path.resolve('build'),
+    // contentBase: path.resolve('build'),
+    // clientLogLevel: 'debug',
+    // index: 'index.html',
+    // injectClient: true,
+    // overlay: true,
     historyApiFallback: true,
-    clientLogLevel: 'debug',
-    index: 'index.html',
-    injectClient: true,
     liveReload: false,
-    overlay: true,
     port: 9000,
     open: true,
     hot: true,

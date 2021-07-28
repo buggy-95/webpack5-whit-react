@@ -13,7 +13,6 @@ const App = () => {
   }, []);
   return (
     <div className="test">
-      <p>it works!!</p>
       <Hello />
       <img className="dog" src="/images/dog.jpeg" alt="dog" />
       <br />
