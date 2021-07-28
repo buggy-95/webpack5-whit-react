@@ -59,7 +59,13 @@ module.exports = {
               [
                 '@babel/preset-env',
                 {
-                  targets: { node: 12 },
+                  corejs: 3,
+                  useBuiltIns: 'usage',
+                  targets: {
+                    chrome: 59,
+                    edge: 13,
+                    firefox: 50,
+                  },
                 }
               ],
             ],
